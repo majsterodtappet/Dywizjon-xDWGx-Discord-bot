@@ -106,7 +106,6 @@ async def on_raw_reaction_add(payload):
             recruit: discord.PermissionOverwrite(read_messages=True,read_message_history=True, send_messages=True),
         }
 
-        #tutaj wybór czy recruit czy recruit.name
         proces = await channel.guild.create_text_channel(f'{recruit}', category=category, overwrites=overwrites, topic=f'Kanał rekrutacyjny dla {priorEmbed.author.name}', reason=f'Rozpoczęto rekrutację {priorEmbed.author.name}')
 
         await proces.send(f'**Witaj na kanale rekrutacyjnym Dywizjonu Wspólnego Grania {recruit.mention} !**')
@@ -157,16 +156,6 @@ async def on_raw_reaction_add(payload):
         except:
             pass
 
-
-        #rec_channel = discord.utils.get(channel.guild.channels, name=recruit.name) #searching channel name, problems occurs if user has non normal signs in nickname
-        #if rec_channel == None:
-        #    pass
-        #else:
-        #    rec_channel = rec_channel.id
-        #    proces = await client.fetch_channel(rec_channel)
-        #    await proces.delete()
-
-
         embed = discord.Embed(
             description = f'‎\nTa aplikacja do Dywizjonu została **odrzucona**.\n‎',
             color = 0x821c1d)
@@ -197,16 +186,6 @@ async def on_raw_reaction_add(payload):
         except:
             pass
 
-
-        #rec_channel = discord.utils.get(channel.guild.channels, name=recruit.name) #searching channel name, problems occurs if user has non-normal signs in nickname
-        #if rec_channel == None:
-        #    pass
-        #else:
-        #    rec_channel = rec_channel.id
-        #    proces = await client.fetch_channel(rec_channel)
-        #    await proces.delete()
-
-
         embed = discord.Embed(
             description = f'‎\nAplikacja do Dywizjonu została rozpatrzona **pozytywnie**.\n‎',
             color = 0x58d68d)
@@ -224,5 +203,6 @@ async def on_raw_reaction_add(payload):
         await message.clear_reactions()
         await message.edit(embed=embed)
         await message.add_reaction("🗑️")
+        
 
 client.run('TOKEN HERE')  
