@@ -11,7 +11,7 @@ client = discord.Client()
 #WSPÓLNE GRANIE:
 channelid = #staff ticket channel
 staff = #staff role id
-recruitment_category = #ticketing category name
+recruitment_category = #ticketing category id
 
 base_ticket = "https://images-ext-1.discordapp.net/external/g4dI0KitJwLA18h541sQmBfn_GoewWXVVkw6J4OcMJM/%3Fsize%3D1024/https/cdn.discordapp.com/icons/282162608939728896/a_e6d6f4481d2e6d830631906f6f52368b.gif"
 
@@ -98,7 +98,7 @@ async def on_raw_reaction_add(payload):
     elif emoji.name == "📩" and reaction.count == 2:
 
         recruit = await client.fetch_user(priorEmbed.fields[1].value)
-        category = discord.utils.get(channel.guild.categories, name=recruitment_category)
+        category = discord.utils.get(channel.guild.categories, id=recruitment_category)
         
         overwrites = {
             channel.guild.default_role: discord.PermissionOverwrite(read_messages=False,read_message_history=False),
